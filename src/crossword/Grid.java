@@ -97,5 +97,65 @@ public class Grid {
                 setCell(r, c, '_');
             }
         }
-    } 
+    }
+    
+    //backtracking implementation
+    public int countCrossings(String word, int row, int col, boolean horizontal){
+        word = word.toLowerCase();
+        int count = 0;
+        for(int i = 0; i < word.length(); i++){
+            int r = row;
+            int c = col;
+            if(horizontal){
+                c = col + i;
+            } else {
+                r = row + i;
+            }
+            if(getCell(r, c) == word.charAt(i)){
+                count++;
+            }
+        }
+        return count;
+    }
+
+    boolean isLetter(char ch){
+        return ch != '_' && ch != '#'; 
+    }
+
+    public boolean isAdjacencySafe(String word, int row, int col, boolean horizontal){
+        word = word.toLowerCase();
+
+        for(int i = 0; i < word.length(); i++){
+            int r = row;
+            int c = col;
+            if(horizontal){
+                c = col + i;
+            } else {
+                r = row + i;
+            }
+            if(getCell(r, c) == '_'){
+                if(horizontal){
+                    if(isLetter(getCell(r-1, c)) || isLetter(getCell(r + 1, c))) return false;               
+            }   else {
+                    if(isLetter(getCell(r, c-1)) || isLetter(getCell(r, c + 1)))return false;
+                }
+            }
+        }
+
+        if(horizontal){
+            if(isLetter(getCell(row, col-1)) || isLetter(getCell(row, col + word.length()))) return false;
+        } else{
+            if(isLetter(getCell(row-1, col)) || isLetter(getCell(row + word.length(), col))) return false;
+        }
+        return true;
+    }
+
+    public boolean isValidPlacement(String word, int row, int col, boolean horizontal, boolean isFirstWord){
+        if(!canPlaceWord(word, row, col, horizontal)) return false;
+        if(!isAdjacencySafe(word, row, col, horizontal)) return false;
+        if(isFirstWord)return true;
+        int crossings = countCrossings(word, row, col, horizontal);
+        if(!(crossings >= 1  && crossings <word.length())) return false;
+        return true;
+    }
 }

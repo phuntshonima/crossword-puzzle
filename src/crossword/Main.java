@@ -25,16 +25,21 @@ public class Main {
         // g.removeWord("cab", 0, 0, true, cab);
         // g.printGrid();
 
-        Stack s = new Stack();
-        System.out.println(s.isEmpty());   
+        // Stack s = new Stack();
+        // System.out.println(s.isEmpty());   
 
-        s.push(new Placement("cab", 0, 0, true,  new boolean[]{true, true, true}));
-        s.push(new Placement("cat", 0, 0, false, new boolean[]{false, true, true}));
+        // s.push(new Placement("cab", 0, 0, true,  new boolean[]{true, true, true}));
+        // s.push(new Placement("cat", 0, 0, false, new boolean[]{false, true, true}));
 
-        System.out.println(s.isEmpty());   
-        System.out.println(s.peek().word); 
-        System.out.println(s.pop().word);  
-        System.out.println(s.pop().word);  
-        System.out.println(s.pop());   
+        // System.out.println(s.isEmpty());   
+        // System.out.println(s.peek().word); 
+        // System.out.println(s.pop().word);  
+        // System.out.println(s.pop().word);  
+        // System.out.println(s.pop());   
+
+        System.out.println(g.isValidPlacement("cab", 0, 0, true, true));    
+        g.placeWord("cab", 0, 0, true);
+        System.out.println(g.isValidPlacement("cat", 0, 0, false, false));  
+        System.out.println(g.isValidPlacement("dog", 2, 3, false, false));  
     }
 }
