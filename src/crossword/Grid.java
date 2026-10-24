@@ -17,6 +17,14 @@ public class Grid {
         }
     }
 
+    public int getRows(){
+        return rows;
+    }
+
+    public int getCols(){
+        return cols;
+    }
+
     public boolean isValidPosition (int row, int col){
         return row >=0 && row < rows && col >=0 && col < cols;
     }

@@ -41,5 +41,18 @@ public class Main {
         g.placeWord("cab", 0, 0, true);
         System.out.println(g.isValidPlacement("cat", 0, 0, false, false));  
         System.out.println(g.isValidPlacement("dog", 2, 3, false, false));  
+
+        Grid g1 = new Grid(5, 5);
+        Backtracker b1 = new Backtracker(g1, new String[]{"cat", "cab", "bat"});
+        System.out.println("Test 1: " + b1.solve());
+        g1.printGrid();
+
+        System.out.println();
+
+        // Test 2: words that can't connect
+        Grid g2 = new Grid(5, 5);
+        Backtracker b2 = new Backtracker(g2, new String[]{"cat", "dog"});
+        System.out.println("Test 2: " + b2.solve());
+        g2.printGrid();
     }
 }
