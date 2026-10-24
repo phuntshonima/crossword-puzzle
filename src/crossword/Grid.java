@@ -42,5 +42,60 @@ public class Grid {
             row.setLength(0);
         }
     }
-    
+
+    public boolean canPlaceWord(String word, int row, int col, boolean horizontal){
+        word = word.toLowerCase();
+        for (int k = 0; k < word.length(); k++){
+            int r = row;
+            int c = col;
+            if (horizontal){
+                c = col + k;
+            } else {
+                r = row + k;
+            }
+            
+            char cell = getCell(r,c);
+
+            if(cell == '_');
+            else if(cell == '#')return false;
+            else if(word.charAt(k) != cell) return false;
+        }
+        return true;
+    }      
+
+    public boolean[] placeWord(String word, int row, int col, boolean horizontal){
+        word = word.toLowerCase();
+        boolean[] newCells = new boolean[word.length()];
+        for (int i = 0; i < word.length(); i++){
+            int c = col;
+            int r = row;
+            if(horizontal){
+                c = col + i;
+            } else{
+                r = row + i;
+            }
+
+            if(getCell(r, c) == '_'){
+                setCell(r, c, word.charAt(i));
+                newCells[i] = true;
+            }
+        }
+        return newCells;
+    }
+
+    public void removeWord(String word, int row, int col, boolean horizontal, boolean[] newCells){
+        word = word.toLowerCase();
+        for(int i = 0; i < word.length(); i++){
+            int r = row;
+            int c = col;
+            if(horizontal){
+                c = col + i;
+            } else{
+                r = row + i;
+            }
+            if(newCells[i]){
+                setCell(r, c, '_');
+            }
+        }
+    }
 }
