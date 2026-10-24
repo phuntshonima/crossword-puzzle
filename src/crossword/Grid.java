@@ -97,5 +97,5 @@ public class Grid {
                 setCell(r, c, '_');
             }
         }
-    }
+    } 
 }
