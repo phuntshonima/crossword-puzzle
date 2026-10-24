@@ -37,22 +37,20 @@ public class Main {
         // System.out.println(s.pop().word);  
         // System.out.println(s.pop());   
 
-        System.out.println(g.isValidPlacement("cab", 0, 0, true, true));    
-        g.placeWord("cab", 0, 0, true);
-        System.out.println(g.isValidPlacement("cat", 0, 0, false, false));  
-        System.out.println(g.isValidPlacement("dog", 2, 3, false, false));  
-
+        // System.out.println(g.isValidPlacement("cab", 0, 0, true, true));    
+        // g.placeWord("cab", 0, 0, true);
+        // System.out.println(g.isValidPlacement("cat", 0, 0, false, false));  
+        // System.out.println(g.isValidPlacement("dog", 2, 3, false, false));  
+        
         Grid g1 = new Grid(5, 5);
-        Backtracker b1 = new Backtracker(g1, new String[]{"cat", "cab", "bat"});
-        System.out.println("Test 1: " + b1.solve());
+        System.out.println(new Backtracker(g1, new String[]{"cat", "cab", "bat"}).solve());  
         g1.printGrid();
 
-        System.out.println();
-
-        // Test 2: words that can't connect
         Grid g2 = new Grid(5, 5);
-        Backtracker b2 = new Backtracker(g2, new String[]{"cat", "dog"});
-        System.out.println("Test 2: " + b2.solve());
-        g2.printGrid();
+        System.out.println(new Backtracker(g2, new String[]{"cat", "dog"}).solve());          
+        g2.printGrid();                                                                      
+
+        Grid g3 = new Grid(5, 5);
+        System.out.println(new Backtracker(g3, new String[]{"cat", "cab", "bat", "xylophone"}).solve());  
     }
 }
